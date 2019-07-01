@@ -11,7 +11,7 @@ import com.yashovardhan99.recyclerviewsample.databinding.LayoutItemBinding
  */
 class RecyclerAdapter(
     private val list: ArrayList<ListItem>,
-    val fragment: RecyclerFragment
+    private val fragment: RecyclerFragment
 ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(private val binding: LayoutItemBinding) : RecyclerView.ViewHolder(binding.root) {
 

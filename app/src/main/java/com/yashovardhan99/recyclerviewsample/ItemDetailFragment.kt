@@ -14,7 +14,6 @@ import com.yashovardhan99.recyclerviewsample.databinding.FragmentItemDetailBindi
  */
 class ItemDetailFragment : Fragment() {
     private lateinit var binding: FragmentItemDetailBinding
-    private lateinit var item: ListItem
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_detail, container, false)
