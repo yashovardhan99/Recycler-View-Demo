@@ -3,11 +3,14 @@ package com.yashovardhan99.recyclerviewsample
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.FlingAnimation
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -27,8 +30,20 @@ class RecyclerFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        setList(10) //Creates a list of 10 items
+        setList(100) //Creates a list of n items
         binding.recyclerView.adapter = RecyclerAdapter(list, this)
+
+        //animating the recyclerList
+        FlingAnimation(binding.recyclerView, DynamicAnimation.SCROLL_Y).apply {
+            val vt = VelocityTracker.obtain()
+            vt.computeCurrentVelocity(1000)
+            setStartVelocity(vt.yVelocity)
+            vt.recycle()
+            setMinValue(0f)
+            friction = 1.1f
+            minimumVisibleChange = DynamicAnimation.MIN_VISIBLE_CHANGE_PIXELS
+            start()
+        }
         return binding.root
     }
 
