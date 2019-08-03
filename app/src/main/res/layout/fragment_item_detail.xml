@@ -16,15 +16,19 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{item.itemName}"
+            android:transitionName="Title"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="36sp" />
 
         <TextView
+            android:id="@+id/description"
             android:layout_width="match_parent"
+            android:transitionName="Description"
             android:layout_height="wrap_content"
             android:text="@{item.itemDescription}" />
     </LinearLayout>

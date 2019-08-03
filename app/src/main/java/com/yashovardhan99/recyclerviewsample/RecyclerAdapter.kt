@@ -19,7 +19,7 @@ class RecyclerAdapter(
             binding.item = listItem
             binding.root.setOnClickListener {
                 Log.d("Adapter", "onClick : ${listItem.itemName}")
-                RecyclerFragment.openDetails(fragment, listItem)
+                RecyclerFragment.openDetails(fragment, listItem, binding.title, binding.description)
             }
         }
     }

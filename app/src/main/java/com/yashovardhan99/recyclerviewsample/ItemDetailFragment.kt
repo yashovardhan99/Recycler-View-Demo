@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import com.yashovardhan99.recyclerviewsample.databinding.FragmentItemDetailBinding
 
 /**
@@ -20,5 +21,12 @@ class ItemDetailFragment : Fragment() {
         val args: ItemDetailFragmentArgs by navArgs()
         binding.item = args.item
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val transition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = transition
+        sharedElementReturnTransition = transition
     }
 }

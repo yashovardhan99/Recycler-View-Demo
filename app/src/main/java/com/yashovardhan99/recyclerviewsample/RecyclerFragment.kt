@@ -1,12 +1,16 @@
 package com.yashovardhan99.recyclerviewsample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yashovardhan99.recyclerviewsample.databinding.FragmentRecyclerBinding
@@ -35,10 +39,17 @@ class RecyclerFragment : Fragment() {
     }
 
     companion object Navigate {
-        fun openDetails(fragment: RecyclerFragment, listItem: ListItem) {
+        fun openDetails(fragment: RecyclerFragment, listItem: ListItem, title: TextView, description: TextView) {
+            ViewCompat.setTransitionName(title, "Title")
+            ViewCompat.setTransitionName(description, "Description")
             fragment.activity?.let {
+                val extras = FragmentNavigatorExtras(
+                    title to "Title",
+                    description to "Description"
+                )
+                Log.d("RECYCLER NAVIGATE", extras.sharedElements.toString())
                 Navigation.findNavController(it, R.id.nav_host_fragment).navigate(
-                    RecyclerFragmentDirections.actionRecyclerFragmentToItemDetailFragment(listItem)
+                    RecyclerFragmentDirections.actionRecyclerFragmentToItemDetailFragment(listItem), extras
                 )
             }
         }
